@@ -9,13 +9,17 @@ namespace Lab1
     {
         static void Main(string[] args)
         {
-            int MAX = 100_000;
+            int MAX = 10_000_000;
             int ITERATIONS = 11;
 
             double totalOrderedCreate = 0;
             double totalUnorderedCreate = 0;
 
             double totalOrderedGet = 0;
+            double totalUnorderedGet = 0;
+
+            double totalOrderdRemoval = 0;
+            double totalUnorderedRemoval = 0;
 
             double totalHeightOrdered = 0;
             double totalHeightUnordered = 0;
@@ -45,6 +49,10 @@ namespace Lab1
                 totalHeightOrdered += dictionaryKeyValueMap.Height;
 
                 totalOrderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                totalUnorderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+
+                totalOrderdRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                totalUnorderedRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
                 //Console.WriteLine("Unordered");
                 intKeyValuePairs.Shuffle();
@@ -59,14 +67,26 @@ namespace Lab1
             Console.WriteLine(keyValueMap.GetType());
 
             Console.WriteLine("Ordered");
+            Console.WriteLine("Create");
             Console.WriteLine(totalOrderedCreate / ITERATIONS);
+            Console.WriteLine("Get");
+            Console.WriteLine(totalOrderedGet / ITERATIONS);
+            Console.WriteLine("Removal");
+            Console.WriteLine(totalOrderdRemoval / ITERATIONS);
+            Console.WriteLine("Height");
             Console.WriteLine(totalHeightOrdered/ ITERATIONS);
 
             Console.WriteLine("Unordered");
+            Console.WriteLine("Create");
             Console.WriteLine(totalUnorderedCreate / ITERATIONS);
+            Console.WriteLine("Get");
+            Console.WriteLine(totalUnorderedGet / ITERATIONS);
+            Console.WriteLine("Removal");
+            Console.WriteLine(totalUnorderedRemoval / ITERATIONS);
+            Console.WriteLine("Height");
             Console.WriteLine(totalHeightUnordered / ITERATIONS);
 
-
+            
 
         }
 
@@ -89,7 +109,6 @@ namespace Lab1
 
             Console.WriteLine(stopwatch.Elapsed.TotalSeconds);
             return stopwatch.Elapsed.TotalSeconds;
-            
 
         }
 
