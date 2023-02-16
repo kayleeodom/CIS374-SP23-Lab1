@@ -33,5 +33,11 @@ namespace Lab1
                 return false;
             }
         }
+
+        public void Clear()
+        {
+            dictionary.Clear();
+        }
+
     }
 }

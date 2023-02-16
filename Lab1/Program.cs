@@ -26,6 +26,13 @@ namespace Lab1
 
             IKeyValueMap<int, int> keyValueMap = null ;
 
+            var dictionaryKeyValueMap = new DictionaryKeyValueMap<int, int>();
+            var bstKeyValueMap = new BinarySearchTreeKeyValueMap<int, int>();
+            var avlKeyValueMap = new AVLTreeKeyValueMap<int, int>();
+            var redblackKeyValueMap = new RedBlackTreeKeyValueMap<int, int>();
+
+            keyValueMap = bstKeyValueMap;
+
             for (int c = 0; c < ITERATIONS; c++)
             {
                 var intKeyValuePairs = new List<KeyValuePair<int, int>>();
@@ -35,35 +42,24 @@ namespace Lab1
                     intKeyValuePairs.Add(new KeyValuePair<int, int>(i, i + 42));
                 }
 
-                var dictionaryKeyValueMap = new DictionaryKeyValueMap<int, int>();
-                var bstKeyValueMap = new BinarySearchTreeKeyValueMap<int, int>();
-                var avlKeyValueMap = new AVLTreeKeyValueMap<int, int>();
-                var redblackKeyValueMap = new RedBlackTreeKeyValueMap<int, int>();
-
-                // This is what you change to run the different test
-                keyValueMap = dictionaryKeyValueMap;
-
-                //Console.WriteLine("DictionaryKeyValueMap");
-                // Console.WriteLine("BSTKeyValueMap");
+                keyValueMap.Clear();
+                // Ordered
                 totalOrderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
-                totalHeightOrdered += dictionaryKeyValueMap.Height;
+                totalHeightOrdered += keyValueMap.Height;
 
-                totalOrderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
-                totalUnorderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                //totalOrderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
                 totalOrderdRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
                 totalUnorderedRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
                 //Console.WriteLine("Unordered");
                 intKeyValuePairs.Shuffle();
-                dictionaryKeyValueMap = new DictionaryKeyValueMap<int, int>();
-                totalUnorderedCreate += CreateKeyValueMap<int, int>(dictionaryKeyValueMap, intKeyValuePairs);
-                totalHeightUnordered += dictionaryKeyValueMap.Height;
+                keyValueMap.Clear();
+                totalUnorderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                totalHeightUnordered += keyValueMap.Height;
 
-                //bstKeyValueMap = new BinarySearchTreeKeyValueMap<int, int>();
-                //CreateKeyValueMap<int, int>(bstKeyValueMap, intKeyValuePairs);
             }
-            //Console.WriteLine("DictionaryKeyValueMap");
+
             Console.WriteLine(keyValueMap.GetType());
 
             Console.WriteLine("Ordered");
