@@ -9,7 +9,7 @@ namespace Lab1
     {
         static void Main(string[] args)
         {
-            int MAX = 1_000_000;
+            int MAX = 100_000;
             int ITERATIONS = 11;
 
             double totalOrderedCreate = 0;
@@ -31,7 +31,7 @@ namespace Lab1
             var avlKeyValueMap = new AVLTreeKeyValueMap<int, int>();
             var redblackKeyValueMap = new RedBlackTreeKeyValueMap<int, int>();
 
-            keyValueMap = bstKeyValueMap;
+            keyValueMap = dictionaryKeyValueMap;
 
             for (int c = 0; c < ITERATIONS; c++)
             {
@@ -44,19 +44,28 @@ namespace Lab1
 
                 keyValueMap.Clear();
                 // Ordered
+                    // Create
                 totalOrderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                    // Height
                 totalHeightOrdered += keyValueMap.Height;
-
+                    // Removal
+                totalOrderdRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                // Get
                 //totalOrderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
-                totalOrderdRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
-                totalUnorderedRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
                 //Console.WriteLine("Unordered");
                 intKeyValuePairs.Shuffle();
                 keyValueMap.Clear();
-                totalUnorderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
-                totalHeightUnordered += keyValueMap.Height;
+                // Unordered
+                    // Create
+                //totalUnorderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                    // Height
+                //totalHeightUnordered += keyValueMap.Height;
+                    // Removal
+                //totalUnorderedRemoval += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                    // Get
+                //totalUnorderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
             }
 
