@@ -7,8 +7,7 @@ namespace Lab1
         public void Add(TKey key, TValue value);
         public KeyValuePair<TKey, TValue> Get(TKey key);
         public bool Remove(TKey key);
-
-        public void Clear();
+        void Clear();
 
         public int Height { get; }
         public int Count { get; }
