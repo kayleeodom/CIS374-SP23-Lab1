@@ -19,6 +19,7 @@ namespace Lab1
 
             double totalHeightOrdered = 0;
             double totalHeightUnordered = 0;
+
             IKeyValueMap<int, int> keyValueMap = null ;
 
             for (int c = 0; c < ITERATIONS; c++)
@@ -41,6 +42,7 @@ namespace Lab1
                 //Console.WriteLine("DictionaryKeyValueMap");
                 // Console.WriteLine("BSTKeyValueMap");
                 totalOrderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                totalHeightOrdered += dictionaryKeyValueMap.Height;
 
                 totalOrderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
@@ -48,8 +50,8 @@ namespace Lab1
                 intKeyValuePairs.Shuffle();
                 dictionaryKeyValueMap = new DictionaryKeyValueMap<int, int>();
                 totalUnorderedCreate += CreateKeyValueMap<int, int>(dictionaryKeyValueMap, intKeyValuePairs);
-                totalHeightOrdered += dictionaryKeyValueMap.Height;
                 totalHeightUnordered += dictionaryKeyValueMap.Height;
+
                 //bstKeyValueMap = new BinarySearchTreeKeyValueMap<int, int>();
                 //CreateKeyValueMap<int, int>(bstKeyValueMap, intKeyValuePairs);
             }
@@ -58,11 +60,11 @@ namespace Lab1
 
             Console.WriteLine("Ordered");
             Console.WriteLine(totalOrderedCreate / ITERATIONS);
-
-            Console.WriteLine(totalHeightOrdered / ITERATIONS);
+            Console.WriteLine(totalHeightOrdered/ ITERATIONS);
 
             Console.WriteLine("Unordered");
             Console.WriteLine(totalUnorderedCreate / ITERATIONS);
+            Console.WriteLine(totalHeightUnordered / ITERATIONS);
 
 
 
